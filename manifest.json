@@ -1,5 +1,5 @@
 {
-  "scripts_version": "002",
+  "scripts_version": "003",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
     "pt": "Adicionado novo script: Teste de Sincronização",
