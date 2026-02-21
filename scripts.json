@@ -68,28 +68,28 @@
     "video": "https://youtu.be/tRwWJqDDiHI?si=tlH2vhRPcEViTkec"
   },
   {
-    "id": "explosao-radial-xpvlq",
+    "id": "explosao-radial-yw30w",
     "title": {
       "pt": "Explosão Radial",
-      "en": "Explosão Radial",
-      "es": "Explosão Radial"
+      "en": "Radial Explosion",
+      "es": "Explosión radial"
     },
-    "author": "Eu Mesmo",
-    "version": "1.0",
+    "author": "Fábio Coutinho",
+    "version": "1.2",
     "description": {
       "pt": "Permite simular uma explosão radial do elemento selecionado usando um slider.",
-      "en": "Permite simular uma explosão radial do elemento selecionado usando um slider.",
-      "es": "Permite simular uma explosão radial do elemento selecionado usando um slider."
+      "en": "Allows you to simulate a radial explosion of the selected element using a slider.",
+      "es": "Le permite simular una explosión radial del elemento seleccionado mediante un control deslizante."
     },
     "keywords": {
       "pt": [
         "explosão"
       ],
       "en": [
-        "explosão"
+        "explosion"
       ],
       "es": [
-        "explosão"
+        "explosión"
       ]
     },
     "code": {
