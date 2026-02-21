@@ -1,9 +1,9 @@
 {
-  "scripts_version": "004",
+  "scripts_version": "005",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Substituído: 'Teste de Sincronização' por 'Teste de Exclusão'",
-    "en": "Substituído: 'Teste de Sincronização' por 'Teste de Exclusão'",
-    "es": "Substituído: 'Teste de Sincronização' por 'Teste de Exclusão'"
+    "pt": "Adicionado: 'Tour Virtual'",
+    "en": "Adicionado: 'Tour Virtual'",
+    "es": "Adicionado: 'Tour Virtual'"
   }
 }
