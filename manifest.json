@@ -1,5 +1,9 @@
 {
-  "scripts_version": "001",
+  "scripts_version": "002",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
-  "release_notes": { "pt": "", "en": "", "es": "" }
+  "release_notes": {
+    "pt": "Adicionado: 'Suavizar Segmentos Curvos'",
+    "en": "Adicionado: 'Suavizar Segmentos Curvos'",
+    "es": "Adicionado: 'Suavizar Segmentos Curvos'"
+  }
 }
