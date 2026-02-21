@@ -36,5 +36,43 @@
     },
     "enabled": false,
     "execute": true
+  },
+  {
+    "title": {
+      "pt": "Teste de Sincronização",
+      "en": "Teste de Sincronização",
+      "es": "Teste de Sincronização"
+    },
+    "author": "Dinâmico Testador",
+    "version": "1.0",
+    "description": {
+      "pt": "Este é um script de teste para validar a integração e comunicação entre o formulário, a folha de cálculo e o repositório.",
+      "en": "Este é um script de teste para validar a integração e comunicação entre o formulário, a folha de cálculo e o repositório.",
+      "es": "Este é um script de teste para validar a integração e comunicação entre o formulário, a folha de cálculo e o repositório."
+    },
+    "keywords": {
+      "pt": [
+        "teste",
+        "automacao",
+        "alerta"
+      ],
+      "en": [
+        "teste",
+        "automacao",
+        "alerta"
+      ],
+      "es": [
+        "teste",
+        "automacao",
+        "alerta"
+      ]
+    },
+    "code": {
+      "pt": "module ScriptUpTeste\n  def self.executar\n    UI.messagebox(\"Olá, Fábio! O fluxo automatizado até ao GitHub funcionou na perfeição!\")\n  end\nend\nScriptUpTeste.executar",
+      "en": "module ScriptUpTeste\n  def self.executar\n    UI.messagebox(\"Olá, Fábio! O fluxo automatizado até ao GitHub funcionou na perfeição!\")\n  end\nend\nScriptUpTeste.executar",
+      "es": "module ScriptUpTeste\n  def self.executar\n    UI.messagebox(\"Olá, Fábio! O fluxo automatizado até ao GitHub funcionou na perfeição!\")\n  end\nend\nScriptUpTeste.executar"
+    },
+    "enabled": false,
+    "execute": true
   }
 ]
