@@ -1,8 +1,8 @@
 {
-  "scripts_version": "008",
+  "scripts_version": "009",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Substituído: 'Explosão Radial;Permite simular uma explosão radial do elemento selecionado usando um slider.' por 'Explosão Radial'",
+    "pt": "Apenas correções de traduções.",
     "en": "Substituído: 'Explosão Radial;Permite simular uma explosão radial do elemento selecionado usando um slider.' por 'Explosão Radial'",
     "es": "Substituído: 'Explosão Radial;Permite simular uma explosão radial do elemento selecionado usando um slider.' por 'Explosão Radial'"
   }
