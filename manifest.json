@@ -1,9 +1,9 @@
 {
-  "scripts_version": "004",
+  "scripts_version": "005",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Subdivide Face, Seleção de Malha por Raio",
-    "en": "Adicionados: Subdivide Face, Seleção de Malha por Raio",
-    "es": "Adicionados: Subdivide Face, Seleção de Malha por Raio"
+    "pt": "Adicionados: Remover Materiais Aplicados",
+    "en": "Adicionados: Remover Materiais Aplicados",
+    "es": "Adicionados: Remover Materiais Aplicados"
   }
 }
