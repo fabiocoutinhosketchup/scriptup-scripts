@@ -1,5 +1,5 @@
 {
-  "scripts_version": "013",
+  "scripts_version": "014",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
     "pt": "Substituído: 'Visita virtual' por 'Tour Virtual'",
