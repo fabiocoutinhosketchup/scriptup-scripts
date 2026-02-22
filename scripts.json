@@ -159,5 +159,67 @@
     },
     "enabled": false,
     "execute": true
+  },
+  {
+    "id": "suavizador-de-arestas-8vms6",
+    "title": {
+      "pt": "Suavizador de Arestas",
+      "en": "Edge Smoother",
+      "es": "Suavizado de bordes"
+    },
+    "author": "Fabio",
+    "version": "1.0",
+    "description": {
+      "pt": "Suaviza arestas selecionadas",
+      "en": "Smooths selected edges.",
+      "es": "Suaviza los bordes seleccionados."
+    },
+    "keywords": {
+      "pt": [
+        "suavizar"
+      ],
+      "en": [
+        "soften"
+      ],
+      "es": [
+        "ablandar"
+      ]
+    },
+    "code": {
+      "pt": "module SuavizarArestasInterativo\r\n  extend self\r\n\r\n  def iniciar\r\n    model = Sketchup.active_model\r\n    selection = model.selection\r\n\r\n    unless selection.length == 1 && (selection.first.is_a?(Sketchup::Group) || selection.first.is_a?(Sketchup::ComponentInstance))\r\n      UI.messagebox(\"Selecione um único grupo ou componente para aplicar o suavizador.\")\r\n      return\r\n    end\r\n\r\n    @entidade_raiz = selection.first\r\n    @transformacao_raiz = @entidade_raiz.transformation\r\n\r\n    mostrar_interface\r\n  end\r\n\r\n  def aplicar_suavizacao(angulo_graus)\r\n    model = Sketchup.active_model\r\n    view = model.active_view\r\n    model.start_operation(\"Suavizar Arestas\", true)\r\n\r\n    @dialog.execute_script(\"atualizar_progresso(0)\")\r\n    angulo_radianos = angulo_graus.to_f.degrees\r\n\r\n    contar_total = contar_arestas(@entidade_raiz)\r\n    @processadas = 0\r\n    @total_arestas = contar_total\r\n\r\n    suavizar_entidade(@entidade_raiz, @transformacao_raiz, angulo_radianos)\r\n\r\n    @dialog.execute_script(\"atualizar_progresso(100)\")\r\n    model.commit_operation\r\n    view.invalidate\r\n  end\r\n\r\n  def contar_arestas(entidade)\r\n    total = 0\r\n    if entidade.is_a?(Sketchup::Group) || entidade.is_a?(Sketchup::ComponentInstance)\r\n      definicao = entidade.definition\r\n      definicao.entities.each do |e|\r\n        if e.is_a?(Sketchup::Group) || e.is_a?(Sketchup::ComponentInstance)\r\n          total += contar_arestas(e)\r\n        elsif e.is_a?(Sketchup::Edge) && e.faces.length == 2\r\n          total += 1\r\n        end\r\n      end\r\n    end\r\n    total\r\n  end\r\n\r\n  def suavizar_entidade(entidade, tr_global, angulo_maximo)\r\n    if entidade.is_a?(Sketchup::Group) || entidade.is_a?(Sketchup::ComponentInstance)\r\n      definicao = entidade.definition\r\n      tr_local = entidade.transformation\r\n      nova_tr = tr_global * tr_local\r\n\r\n      definicao.entities.each do |e|\r\n        if e.is_a?(Sketchup::Group) || e.is_a?(Sketchup::ComponentInstance)\r\n          suavizar_entidade(e, nova_tr, angulo_maximo)\r\n        elsif e.is_a?(Sketchup::Edge) && e.faces.length == 2\r\n          suavizar_ou_nao(e, angulo_maximo)\r\n        end\r\n      end\r\n    end\r\n  end\r\n\r\n  def suavizar_ou_nao(aresta, angulo_maximo)\r\n    faces = aresta.faces\r\n    return unless faces.length == 2\r\n\r\n    normal1 = faces[0].normal\r\n    normal2 = faces[1].normal\r\n    return unless normal1 && normal2\r\n\r\n    angulo = normal1.angle_between(normal2)\r\n\r\n    if angulo <= angulo_maximo\r\n      aresta.soft = true\r\n      aresta.smooth = true\r\n    else\r\n      aresta.soft = false\r\n      aresta.smooth = false\r\n    end\r\n\r\n    @processadas += 1\r\n    if @processadas % 100 == 0 || @processadas == @total_arestas\r\n      progresso = ((@processadas.to_f / @total_arestas) * 100).round\r\n      @dialog.execute_script(\"atualizar_progresso(#{progresso})\")\r\n    end\r\n  end\r\n\r\n  def mostrar_interface\r\n    @dialog ||= UI::HtmlDialog.new({\r\n      dialog_title: \"Suavizar Arestas Interativo\",\r\n      width: 500,\r\n      height: 130,\r\n      style: UI::HtmlDialog::STYLE_DIALOG\r\n    })\r\n\r\n    html = <<-HTML\r\n      <!DOCTYPE html>\r\n      <html lang=\"pt-br\">\r\n      <head>\r\n        <meta charset=\"UTF-8\">\r\n        <style>\r\n          body { font-family: \"Segoe UI\", Tahoma, sans-serif; padding: 20px; margin: 0; background-color: #f9f9f9; color: #333; }\r\n          h5 { margin-bottom: 16px; font-size: 16px; font-weight: 600; }\r\n          .slider-container { position: relative; width: 100%; padding-top: 24px; }\r\n          input[type=\"range\"] { width: 100%; margin: 0; }\r\n          .tooltip { position: absolute; top: 0; transform: translateX(-50%); background: #0053a0; color: white; padding: 4px 10px; border-radius: 6px; font-size: 13px; white-space: nowrap; }\r\n          .progresso-indicador { margin-top: 24px; text-align: center; font-size: 14px; font-weight: bold; color: #0053a0; }\r\n          .button-container { text-align: center; margin-top: 24px; }\r\n          button { min-width: 140px; padding: 8px 20px; font-weight: 600; font-size: 14px; border: none; border-radius: 6px; cursor: pointer; color: white; }\r\n          .btn-primary { background-color: #0053a0; }\r\n          .btn-success { background-color: #2e8540; }\r\n          .btn-primary:hover { background-color: #003d7a; }\r\n          .btn-success:hover { background-color: #256e34; }\r\n        </style>\r\n      </head>\r\n      <body>\r\n        <h5>Ângulo Máximo para Suavização</h5>\r\n        <div class=\"slider-container\">\r\n          <div id=\"tooltip\" class=\"tooltip\">85°</div>\r\n          <input id=\"slider\" type=\"range\" min=\"0\" max=\"180\" step=\"1\" value=\"85\" oninput=\"onSliderChange(this.value)\">\r\n        </div>\r\n        <div id=\"progresso_texto\" class=\"progresso-indicador\">0%</div>\r\n        <div class=\"button-container\">\r\n          <button id=\"actionButton\" class=\"btn-primary\" onclick=\"botaoAcao()\">Fechar</button>\r\n        </div>\r\n        <script>\r\n          const slider = document.getElementById(\"slider\");\r\n          const tooltip = document.getElementById(\"tooltip\");\r\n          const button = document.getElementById(\"actionButton\");\r\n          let valorAplicado = \"85\";\r\n\r\n          function onSliderChange(valor) {\r\n            tooltip.innerText = valor + \"°\";\r\n            atualizarTooltip();\r\n            if (valor !== valorAplicado) {\r\n              button.innerText = \"Aplicar\";\r\n              button.className = \"btn-success\";\r\n            } else {\r\n              button.innerText = \"Fechar\";\r\n              button.className = \"btn-primary\";\r\n            }\r\n          }\r\n\r\n          function botaoAcao() {\r\n            const valorAtual = slider.value;\r\n            if (button.innerText === \"Aplicar\") {\r\n              atualizar_progresso(0);\r\n              sketchup.aplicar_angulo(valorAtual);\r\n              valorAplicado = valorAtual;\r\n              button.innerText = \"Fechar\";\r\n              button.className = \"btn-primary\";\r\n            } else {\r\n              sketchup.fechar_janela();\r\n            }\r\n          }\r\n\r\n          function atualizarTooltip() {\r\n            const percent = (slider.value - slider.min) / (slider.max - slider.min);\r\n            const rangeWidth = slider.offsetWidth;\r\n            const pos = percent * (rangeWidth - 16) + 8;\r\n            tooltip.style.left = pos + \"px\";\r\n          }\r\n\r\n          function atualizar_progresso(valor) {\r\n            const texto = document.getElementById(\"progresso_texto\");\r\n            texto.innerText = valor >= 100 ? \"Concluído\" : valor + \"%\";\r\n          }\r\n\r\n          window.onload = () => {\r\n            atualizarTooltip();\r\n            setTimeout(() => {\r\n              sketchup.aplicar_angulo(slider.value);\r\n            }, 150);\r\n          };\r\n\r\n          slider.addEventListener(\"input\", atualizarTooltip);\r\n        </script>\r\n      </body>\r\n      </html>\r\n    HTML\r\n\r\n    @dialog.set_html(html)\r\n\r\n    @dialog.add_action_callback(\"aplicar_angulo\") do |_, angulo|\r\n      aplicar_suavizacao(angulo.to_f)\r\n    end\r\n\r\n    @dialog.add_action_callback(\"fechar_janela\") do |_|\r\n      @dialog.close\r\n    end\r\n\r\n    @dialog.show\r\n  end\r\nend\r\n\r\n# Executar\r\nSuavizarArestasInterativo.iniciar"
+    },
+    "enabled": false,
+    "execute": true
+  },
+  {
+    "id": "reexibir-arestas-8voo8",
+    "title": {
+      "pt": "Reexibir Arestas",
+      "en": "Show Edges",
+      "es": "Mostrar bordes"
+    },
+    "author": "Coutinho",
+    "version": "1.2",
+    "description": {
+      "pt": "Reexibe arestas do elemento selecionado.",
+      "en": "Redisplays the edges of the selected element.",
+      "es": "Vuelve a mostrar los bordes del elemento seleccionado."
+    },
+    "keywords": {
+      "pt": [
+        "reexibir"
+      ],
+      "en": [
+        "re-air"
+      ],
+      "es": [
+        "re-emisión"
+      ]
+    },
+    "code": {
+      "pt": "model = Sketchup.active_model\r\nselection = model.selection\r\n\r\nif selection.empty?\r\n  puts \"Nenhuma entidade selecionada.\"\r\nelse\r\n  model.start_operation('Remover Suavização', true)\r\n\r\n  selection.grep(Sketchup::Edge).each do |edge|\r\n    # Reexibe se estiver oculta\r\n    edge.hidden = false\r\n    \r\n    # Remove soft e smooth\r\n    edge.soft = false\r\n    edge.smooth = false\r\n  end\r\n\r\n  # Itera pelas faces para garantir que todas as arestas conectadas à seleção também sejam tratadas\r\n  model.active_entities.grep(Sketchup::Face).each do |face|\r\n    face.edges.each do |edge|\r\n      # Se a aresta estiver na seleção, remove suavização dela\r\n      if selection.include?(edge)\r\n        edge.hidden = false\r\n        edge.soft = false\r\n        edge.smooth = false\r\n      end\r\n    end\r\n  end\r\n\r\n  model.commit_operation\r\n  puts \"Processo concluído: suavização removida e arestas reexibidas.\"\r\nend"
+    },
+    "enabled": false,
+    "execute": true
   }
 ]
