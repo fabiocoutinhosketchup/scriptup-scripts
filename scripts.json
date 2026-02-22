@@ -130,18 +130,18 @@
     "execute": true
   },
   {
-    "id": "tour-virtual-679qz",
+    "id": "tour-virtual-6p7pe",
     "title": {
       "pt": "Tour Virtual",
       "en": "Virtual Tour",
       "es": "Visita virtual"
     },
-    "author": "Fábio Coutinho",
-    "version": "3.6",
+    "author": "Eu Mesmo",
+    "version": "3.0",
     "description": {
-      "pt": "Cria um vídeo da viewport",
-      "en": "Create a video of the viewport.",
-      "es": "Crea un vídeo de la ventana gráfica."
+      "pt": "Faz um tour gravado do projeto",
+      "en": "Take a recorded tour of the project.",
+      "es": "Realice un recorrido grabado del proyecto."
     },
     "keywords": {
       "pt": [
