@@ -128,5 +128,36 @@
     },
     "enabled": false,
     "execute": true
+  },
+  {
+    "id": "teletransporte-42ulf",
+    "title": {
+      "pt": "Teletransporte",
+      "en": "Teleportation",
+      "es": "Teletransportación"
+    },
+    "author": "Fábio",
+    "version": "1.0",
+    "description": {
+      "pt": "Permite transportar uma geometria de um lugar para outro.",
+      "en": "It allows you to transport a geometry from one place to another.",
+      "es": "Permite transportar una geometría de un lugar a otro."
+    },
+    "keywords": {
+      "pt": [
+        "cópia"
+      ],
+      "en": [
+        "copy"
+      ],
+      "es": [
+        "copiar"
+      ]
+    },
+    "code": {
+      "pt": "module TeletransportadorDeGeometria\r\n  class Tool\r\n    VK_CONTROL ||= 17\r\n    VK_SHIFT ||= 16\r\n\r\n    def initialize\r\n      @step = :select_source\r\n      @mode = :transportar\r\n      @localizacao = :interno\r\n      @source = nil\r\n    end\r\n\r\n    def activate\r\n      Sketchup.status_text = status_message\r\n      Sketchup.active_model.selection.clear\r\n    end\r\n\r\n    def status_message\r\n      acao = @mode == :transportar ? \"Transportar\" : \"Substituir\"\r\n      local = @localizacao == :interno ? \"Interno\" : \"Externo\"\r\n      case @step\r\n      when :select_source\r\n        \"Modo: #{acao} | Localização: #{local} | Clique no item que será transportado.\"\r\n      when :select_target\r\n        \"Modo: #{acao} | Localização: #{local} | Clique no local de destino.\"\r\n      end\r\n    end\r\n\r\n    def onKeyDown(key, repeat, flags, view)\r\n      case key\r\n      when VK_CONTROL\r\n        @mode = (@mode == :transportar ? :substituir : :transportar)\r\n      when VK_SHIFT\r\n        @localizacao = (@localizacao == :interno ? :externo : :interno)\r\n      end\r\n      Sketchup.status_text = status_message\r\n    end\r\n\r\n    def onMouseMove(flags, x, y, view)\r\n      model = Sketchup.active_model\r\n      ph = view.pick_helper\r\n      ph.do_pick(x, y)\r\n      path = ph.path_at(0)\r\n      return model.selection.clear unless path\r\n    \r\n      entity = path.to_a.first\r\n    \r\n      if @step == :select_source\r\n        if entity.is_a?(Sketchup::Group) || entity.is_a?(Sketchup::ComponentInstance)\r\n          model.selection.clear\r\n          model.selection.add(entity)\r\n        else\r\n          model.selection.clear\r\n        end\r\n      else\r\n        entity = path.to_a.reverse.find { |e| e.is_a?(Sketchup::Group) || e.is_a?(Sketchup::ComponentInstance) }\r\n        if entity\r\n          model.selection.clear\r\n          model.selection.add(entity)\r\n        else\r\n          model.selection.clear\r\n        end\r\n      end\r\n\r\n      Sketchup.status_text = status_message\r\n    end\r\n\r\n    def onLButtonDown(flags, x, y, view)\r\n      model = Sketchup.active_model\r\n      ph = view.pick_helper\r\n      ph.do_pick(x, y)\r\n      path = ph.path_at(0)\r\n      return unless path\r\n\r\n      path_array = path.to_a\r\n\r\n      if @step == :select_source\r\n        entity = path_array.first\r\n        return unless entity.is_a?(Sketchup::Group) || entity.is_a?(Sketchup::ComponentInstance)\r\n      else\r\n        entity = path_array.reverse.find { |e| e.is_a?(Sketchup::Group) || e.is_a?(Sketchup::ComponentInstance) }\r\n        return unless entity\r\n      end\r\n\r\n      # Garante unicidade\r\n      entity.make_unique if entity.respond_to?(:make_unique)\r\n\r\n      instance_path = Sketchup::InstancePath.new(path_array[0..path_array.index(entity)])\r\n      global_tr = instance_path.transformation\r\n\r\n      if @step == :select_source\r\n        @source = {\r\n          entity: entity,\r\n          definition: entity.definition,\r\n          global_tr: global_tr\r\n        }\r\n        @step = :select_target\r\n        Sketchup.status_text = status_message\r\n      else\r\n        perform_transfer(@source, entity, global_tr, instance_path)\r\n        reset\r\n      end\r\n    end\r\n\r\n    def perform_transfer(source_data, destination, destination_tr, destination_path)\r\n      model = Sketchup.active_model\r\n      model.start_operation(\"Teletransporte\", true)\r\n    \r\n      source_entity = source_data[:entity]\r\n      source_definition = source_data[:definition]\r\n      source_tr = source_data[:global_tr]\r\n    \r\n      if @localizacao == :interno\r\n        dest_entities = destination.definition.entities\r\n        inverse_dest_tr = destination_tr.inverse\r\n        relative_tr = inverse_dest_tr * source_tr\r\n      else\r\n        dest_entities = destination.parent.entities\r\n    \r\n        if destination_path\r\n          parent_path = Sketchup::InstancePath.new(destination_path.to_a[0...-1])\r\n          inverse_parent_path_tr = parent_path.transformation.inverse\r\n          relative_tr = inverse_parent_path_tr * source_tr\r\n        else\r\n          relative_tr = source_tr\r\n        end\r\n      end\r\n    \r\n      new_instance = dest_entities.add_instance(source_definition, relative_tr)\r\n      new_instance.material = source_entity.material if source_entity.material\r\n    \r\n      unless new_instance && new_instance.valid?\r\n        UI.messagebox(\"Erro ao colar instância no destino!\")\r\n        model.abort_operation\r\n        return\r\n      end\r\n    \r\n      if @mode == :substituir\r\n        if @localizacao == :interno\r\n          keep_id = new_instance.entityID\r\n          to_erase = dest_entities.select { |e| e.entityID != keep_id }\r\n          dest_entities.erase_entities(to_erase)\r\n        else\r\n          destination.erase!\r\n        end\r\n      end\r\n    \r\n      source_entity.erase!\r\n    \r\n      model.commit_operation\r\n    end    \r\n\r\n    def reset\r\n      @step = :select_source\r\n      @source = nil\r\n      Sketchup.status_text = status_message\r\n      Sketchup.active_model.selection.clear\r\n    end\r\n\r\n    def deactivate(view)\r\n      Sketchup.status_text = \"\"\r\n      Sketchup.active_model.selection.clear\r\n    end\r\n  end\r\n\r\n  def self.ativar_ferramenta\r\n    Sketchup.active_model.select_tool(Tool.new)\r\n  end\r\nend\r\n\r\nTeletransportadorDeGeometria.ativar_ferramenta"
+    },
+    "enabled": false,
+    "execute": true
   }
 ]
