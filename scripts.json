@@ -1013,5 +1013,42 @@
     },
     "enabled": false,
     "execute": true
+  },
+  {
+    "id": "remover-materiais-aplicados-6vkz5",
+    "title": {
+      "pt": "Remover Materiais Aplicados",
+      "en": "Remove Applied Materials",
+      "es": "Eliminar materiales aplicados"
+    },
+    "author": "Fábio Coutinho",
+    "version": "0.2",
+    "description": {
+      "pt": "Remove todos os materiais aplicados em toda a hierarquia dos elementos selecionados.",
+      "en": "Remove all materials applied across the entire hierarchy of the selected elements.",
+      "es": "Eliminar todos los materiales aplicados en toda la jerarquía de los elementos seleccionados."
+    },
+    "keywords": {
+      "pt": [
+        "remover materiais",
+        "material",
+        "textura"
+      ],
+      "en": [
+        "remove materials",
+        "material",
+        "texture"
+      ],
+      "es": [
+        "retirar materiales",
+        "material",
+        "textura"
+      ]
+    },
+    "code": {
+      "pt": "# Remover TODOS os materiais do selecionado (grupo/componente) e de toda a hierarquia\r\n# Cole no Console Ruby com um grupo ou componente selecionado.\r\n\r\nmodel = Sketchup.active_model\r\nsel = model.selection\r\nalvos = sel.grep(Sketchup::Group) + sel.grep(Sketchup::ComponentInstance)\r\n\r\nif alvos.empty?\r\n  puts \"Selecione um grupo ou componente.\"\r\n  return\r\nend\r\n\r\nfaces_limpas = 0\r\ninst_processadas = 0\r\ndefinicoes_unicas = 0\r\ndefs_processadas = {} # NOVO: Dicionário para evitar reprocessamento\r\n\r\nclear_entities = nil\r\nclear_instance = nil\r\n\r\nclear_entities = lambda { |entities|\r\n  # Faces: limpa frente e verso de forma direta, sem checagens redundantes\r\n  entities.grep(Sketchup::Face).each do |f|\r\n    if f.material\r\n      f.material = nil\r\n      faces_limpas += 1\r\n    end\r\n    if f.back_material\r\n      f.back_material = nil\r\n      faces_limpas += 1\r\n    end\r\n  end\r\n\r\n  # Grupos e Componentes: concatenados para iterar apenas uma vez\r\n  (entities.grep(Sketchup::Group) + entities.grep(Sketchup::ComponentInstance)).each do |inst|\r\n    next if inst.deleted?\r\n    inst.material = nil if inst.material\r\n    inst_processadas += 1\r\n    clear_instance.call(inst)\r\n  end\r\n}\r\n\r\nclear_instance = lambda { |inst|\r\n  is_group = inst.is_a?(Sketchup::Group)\r\n  \r\n  # Removemos o make_unique. A limpeza agora age direto na raiz da Definição.\r\n  # Isso iguala a performance ao Material Tools.\r\n  defn = is_group ? inst.entities.parent : inst.definition\r\n  \r\n  # Checa o cache: varre as entidades internas apenas na primeira vez que encontrar esta definição\r\n  unless defs_processadas[defn]\r\n    defs_processadas[defn] = true\r\n    clear_entities.call(is_group ? inst.entities : defn.entities)\r\n  end\r\n}\r\n\r\nmodel.start_operation(\"Remover Materiais Recursivo\", true)\r\nbegin\r\n  alvos.each do |t|\r\n    t.material = nil if t.respond_to?(:material) && t.material\r\n    inst_processadas += 1\r\n    clear_instance.call(t)\r\n  end\r\n  model.commit_operation\r\nrescue => e\r\n  model.abort_operation\r\n  puts \"Erro: #{e}\"\r\nend\r\n\r\nputs \"Materiais removidos.\"\r\nputs \"Faces limpas: #{faces_limpas}\"\r\nputs \"Instâncias processadas: #{inst_processadas}\"\r\nputs \"Definições tornadas únicas: #{definicoes_unicas}\""
+    },
+    "enabled": false,
+    "execute": true
   }
 ]
