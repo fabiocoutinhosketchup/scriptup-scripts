@@ -1,9 +1,9 @@
 {
-  "scripts_version": "002",
+  "scripts_version": "003",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Atualização em lote: 27 novo(s), 0 removido(s).",
-    "en": "Atualização em lote: 27 novo(s), 0 removido(s).",
-    "es": "Atualização em lote: 27 novo(s), 0 removido(s)."
+    "pt": "Adicionados: Unir Faces Coplanares",
+    "en": "Adicionados: Unir Faces Coplanares",
+    "es": "Adicionados: Unir Faces Coplanares"
   }
 }
