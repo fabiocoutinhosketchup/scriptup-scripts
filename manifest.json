@@ -1,9 +1,9 @@
 {
-  "scripts_version": "005",
+  "scripts_version": "006",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Remover Materiais Aplicados",
-    "en": "Adicionados: Remover Materiais Aplicados",
-    "es": "Adicionados: Remover Materiais Aplicados"
+    "pt": "Adicionados: Régua Dinâmica de Superfície, Tour Virtual",
+    "en": "Adicionados: Régua Dinâmica de Superfície, Tour Virtual",
+    "es": "Adicionados: Régua Dinâmica de Superfície, Tour Virtual"
   }
 }
