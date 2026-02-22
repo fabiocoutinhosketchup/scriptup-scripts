@@ -1,9 +1,9 @@
 {
-  "scripts_version": "003",
+  "scripts_version": "004",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Unir Faces Coplanares",
-    "en": "Adicionados: Unir Faces Coplanares",
-    "es": "Adicionados: Unir Faces Coplanares"
+    "pt": "Adicionados: Subdivide Face, Seleção de Malha por Raio",
+    "en": "Adicionados: Subdivide Face, Seleção de Malha por Raio",
+    "es": "Adicionados: Subdivide Face, Seleção de Malha por Raio"
   }
 }
