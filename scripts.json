@@ -1189,5 +1189,39 @@
     },
     "enabled": false,
     "execute": true
+  },
+  {
+    "id": "clonar-componentes-3bhvj",
+    "title": {
+      "pt": "Clonar componentes",
+      "en": "Clone components",
+      "es": "Componentes de clonación"
+    },
+    "author": "Igor Terra Tozzi",
+    "version": "12",
+    "description": {
+      "pt": "O Clonar Componentes é uma ferramenta de produtividade essencial para quem precisa padronizar modelos de forma ultra rápida no SketchUp. Sabe quando você espalha vários blocos genéricos ou grupos pelo projeto e depois decide que todos eles deveriam ser um componente específico (como uma cadeira, uma luminária ou uma árvore)? Este script faz essa troca em segundos.",
+      "en": "The Component Cloning tool is an essential productivity tool for anyone who needs to standardize models ultra-fast in SketchUp. You know when you scatter several generic blocks or groups throughout your project and then decide that they should all be a specific component (like a chair, a lamp, or a tree)? This script makes that switch in seconds.",
+      "es": "La herramienta Clonación de Componentes es una herramienta de productividad esencial para cualquiera que necesite estandarizar modelos ultrarrápido en SketchUp. ¿Sabes cuando distribuyes varios bloques o grupos genéricos por todo el proyecto y luego decides que todos deben ser un componente específico (como una silla, una lámpara o un árbol)? Este script realiza ese cambio en segundos."
+    },
+    "keywords": {
+      "pt": [
+        "o clonar componentes é uma ferramenta de produtividade essencial para quem precisa padronizar modelos de forma ultra rápida no sketchup. sabe quando você espalha vários blocos genéricos ou grupos pelo projeto e depois decide que todos eles deveriam ser um componente específico (como uma cadeira",
+        "uma luminária ou uma árvore)? este script faz essa troca em segundos."
+      ],
+      "en": [
+        "cloning components is an essential productivity tool for anyone who needs to standardize models ultra-fast in sketchup. you know when you scatter several generic blocks or groups throughout the project and then decide that they should all be a specific component (like a chair)?",
+        "a lamp or a tree? this script makes that switch in seconds."
+      ],
+      "es": [
+        "clonar componentes es una herramienta de productividad esencial para cualquiera que necesite estandarizar modelos ultrarrápido en sketchup. ¿sabes cuando distribuyes varios bloques o grupos genéricos por el proyecto y luego decides que todos deben ser un componente específico (como una silla)?",
+        "¿una lámpara o un árbol? este script te permite cambiar de lugar en segundos."
+      ]
+    },
+    "code": {
+      "pt": "module ScriptUpComunidade\r\n  module ClonarComponentes\r\n\r\n    IDIOMAS = {\r\n      'pt-BR' => {\r\n        :selecao_vazia   => \"Selecione pelo menos uma entidade (incluindo a cadeira referência).\",\r\n        :erro_componente => \"Nenhum componente encontrado na seleção.\\nSelecione um componente de referência e os grupos a substituir.\",\r\n        :operacao        => \"Clonar componente de referência\",\r\n        :sucesso_prefixo => \"✅ Clonagem concluída. Todas as entidades selecionadas agora são instâncias de \"\r\n      },\r\n      'en-US' => {\r\n        :selecao_vazia   => \"Please select at least one entity (including the reference component).\",\r\n        :erro_componente => \"No component found in selection.\\nSelect a reference component and the groups to replace.\",\r\n        :operacao        => \"Clone reference component\",\r\n        :sucesso_prefixo => \"✅ Cloning completed. All selected entities are now instances of \"\r\n      },\r\n      'es' => {\r\n        :selecao_vazia   => \"Seleccione al menos una entidad (incluyendo el componente de referencia).\",\r\n        :erro_componente => \"No se encontró ningún componente en la selección.\\nSeleccione un componente de referencia y los grupos a sustituir.\",\r\n        :operacao        => \"Clonar componente de referencia\",\r\n        :sucesso_prefixo => \"✅ Clonación completada. Todas las entidades seleccionadas son ahora instancias de \"\r\n      }\r\n    }\r\n\r\n    def self.obter_texto(chave)\r\n      locale = Sketchup.get_locale\r\n      lang   = IDIOMAS.key?(locale) ? locale : 'en-US'\r\n      IDIOMAS[lang][chave] || IDIOMAS['en-US'][chave] || chave.to_s\r\n    end\r\n\r\n    def self.executar\r\n      model = Sketchup.active_model\r\n      sel = model.selection\r\n\r\n      if sel.empty?\r\n        UI.messagebox(obter_texto(:selecao_vazia))\r\n        return\r\n      end\r\n\r\n      # Pega o primeiro componente selecionado como referência\r\n      reference_inst = sel.find { |e| e.is_a?(Sketchup::ComponentInstance) }\r\n\r\n      unless reference_inst\r\n        UI.messagebox(obter_texto(:erro_componente))\r\n        return\r\n      end\r\n\r\n      reference_def = reference_inst.definition\r\n\r\n      model.start_operation(obter_texto(:operacao), true)\r\n\r\n      sel.to_a.each do |ent|\r\n        next if ent == reference_inst\r\n        if ent.is_a?(Sketchup::Group) || ent.is_a?(Sketchup::ComponentInstance)\r\n          tr = ent.transformation\r\n          ent.erase!\r\n          model.entities.add_instance(reference_def, tr)\r\n        end\r\n      end\r\n\r\n      model.commit_operation\r\n      puts \"#{obter_texto(:sucesso_prefixo)}\\\"#{reference_def.name}\\\".\"\r\n    end\r\n\r\n  end\r\nend\r\n\r\nScriptUpComunidade::ClonarComponentes.executar"
+    },
+    "enabled": false,
+    "execute": true
   }
 ]
