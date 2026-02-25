@@ -1,9 +1,9 @@
 {
-  "scripts_version": "009",
+  "scripts_version": "010",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Clonar componentes",
-    "en": "Adicionados: Clonar componentes",
-    "es": "Adicionados: Clonar componentes"
+    "pt": "Adicionados: Gerenciador de Cenas Inteligente",
+    "en": "Adicionados: Gerenciador de Cenas Inteligente",
+    "es": "Adicionados: Gerenciador de Cenas Inteligente"
   }
 }
