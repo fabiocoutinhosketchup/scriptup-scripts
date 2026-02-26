@@ -1,9 +1,9 @@
 {
-  "scripts_version": "011",
+  "scripts_version": "012",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Canetas de Vetorização, Mapeamento UV em Malha Curva",
-    "en": "Adicionados: Canetas de Vetorização, Mapeamento UV em Malha Curva",
-    "es": "Adicionados: Canetas de Vetorização, Mapeamento UV em Malha Curva"
+    "pt": "Adicionados: Canetas de Vetorização, Mapeamento UV em Malha Curva (Subst. versão 1.6)",
+    "en": "Adicionados: Canetas de Vetorização, Mapeamento UV em Malha Curva (Subst. versão 1.6)",
+    "es": "Adicionados: Canetas de Vetorização, Mapeamento UV em Malha Curva (Subst. versão 1.6)"
   }
 }
