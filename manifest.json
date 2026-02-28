@@ -1,9 +1,9 @@
 {
-  "scripts_version": "014",
+  "scripts_version": "015",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Tour Virtual | Removidos: Tour Virtual",
-    "en": "Adicionados: Tour Virtual | Removidos: Tour Virtual",
-    "es": "Adicionados: Tour Virtual | Removidos: Tour Virtual"
+    "pt": "Adicionados: Criador Texto 3D",
+    "en": "Adicionados: Criador Texto 3D",
+    "es": "Adicionados: Criador Texto 3D"
   }
 }
