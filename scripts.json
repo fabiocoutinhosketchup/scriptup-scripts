@@ -1312,5 +1312,48 @@
     },
     "enabled": false,
     "execute": true
+  },
+  {
+    "id": "criador-texto-3d-gb0du",
+    "title": {
+      "pt": "Criador Texto 3D",
+      "en": "3D Text Creator",
+      "es": "Creador de texto 3D"
+    },
+    "author": "Igor Terra Tozzi",
+    "version": "5",
+    "description": {
+      "pt": "Imagine que você quer colocar um letreiro, um nome ou um número na parede de um projeto 3D no SketchUp. Antigamente, você escrevia, o texto ficava \"preso\" e, se quisesse mudar a letra ou a cor, tinha que apagar tudo e fazer do zero.\n\nCom o CreatorText 3D, você escreve o que quiser e o texto aparece na ponta do seu mouse. Basta encostar na parede e clicar para ele \"grudar\" na posição certa. O melhor de tudo: se você decidir que a letra está pequena ou quer mudar a palavra, é só clicar no texto e arrastar as barrinhas no painel. Ele muda na hora, sem você precisar refazer nada!",
+      "en": "Imagine you want to place a sign, a name, or a number on the wall of a 3D project in SketchUp. In the past, you would type, the text would get \"stuck,\" and if you wanted to change the font or color, you had to erase everything and start from scratch.\n\nWith CreatorText 3D, you type whatever you want, and the text appears at the tip of your mouse. Just touch the wall and click to \"stick\" it in the right position. Best of all: if you decide the font is too small or you want to change the word, just click on the text and drag the sliders in the panel. It changes instantly, without you having to redo anything!",
+      "es": "Imagina que quieres colocar un letrero, un nombre o un número en la pared de un proyecto 3D en SketchUp. Antes, al escribir, el texto se quedaba atascado, y si querías cambiar la fuente o el color, tenías que borrarlo todo y empezar de cero.\n\nCon CreatorText 3D, escribes lo que quieras y el texto aparece en la punta del ratón. Simplemente toca la pared y haz clic para fijarlo en la posición correcta. Lo mejor de todo: si la fuente es demasiado pequeña o quieres cambiar la palabra, simplemente haz clic en el texto y arrastra los controles deslizantes del panel. ¡Cambia al instante, sin tener que rehacer nada!"
+    },
+    "keywords": {
+      "pt": [
+        "texto",
+        "editor de texto",
+        "editar texto",
+        "cor texto",
+        "fonte"
+      ],
+      "en": [
+        "text",
+        "text editor",
+        "edit text",
+        "color text",
+        "source"
+      ],
+      "es": [
+        "texto",
+        "editor de texto",
+        "editar texto",
+        "texto en color",
+        "fuente"
+      ]
+    },
+    "code": {
+      "pt": "https://docs.google.com/document/d/1deCAK2E7JVziQEB6Dj1p4UYCTzO_AOzgY28HGzZhr8s/edit?usp=drive_link"
+    },
+    "enabled": false,
+    "execute": true
   }
 ]
