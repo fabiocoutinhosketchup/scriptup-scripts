@@ -1,9 +1,9 @@
 {
-  "scripts_version": "017",
+  "scripts_version": "018",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: CurvUp",
-    "en": "Adicionados: CurvUp",
-    "es": "Adicionados: CurvUp"
+    "pt": "Adicionados: Salvamento de Componente em Lote, Clonar componentes, Configurar Alças de Escala | Removidos: Clonar componentes",
+    "en": "Adicionados: Salvamento de Componente em Lote, Clonar componentes, Configurar Alças de Escala | Removidos: Clonar componentes",
+    "es": "Adicionados: Salvamento de Componente em Lote, Clonar componentes, Configurar Alças de Escala | Removidos: Clonar componentes"
   }
 }
