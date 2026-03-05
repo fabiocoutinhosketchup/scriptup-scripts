@@ -1,9 +1,9 @@
 {
-  "scripts_version": "019",
+  "scripts_version": "020",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Estica e Puxa Sem Deformar no Eixo",
-    "en": "Adicionados: Estica e Puxa Sem Deformar no Eixo",
-    "es": "Adicionados: Estica e Puxa Sem Deformar no Eixo"
+    "pt": "Adicionados: Gerador de Superfícies",
+    "en": "Adicionados: Gerador de Superfícies",
+    "es": "Adicionados: Gerador de Superfícies"
   }
 }
