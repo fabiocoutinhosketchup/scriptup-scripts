@@ -1,9 +1,9 @@
 {
-  "scripts_version": "020",
+  "scripts_version": "021",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Gerador de Superfícies",
-    "en": "Adicionados: Gerador de Superfícies",
-    "es": "Adicionados: Gerador de Superfícies"
+    "pt": "Adicionados: Make 2D Silhuetas",
+    "en": "Adicionados: Make 2D Silhuetas",
+    "es": "Adicionados: Make 2D Silhuetas"
   }
 }
