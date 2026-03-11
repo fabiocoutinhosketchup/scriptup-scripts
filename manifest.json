@@ -1,9 +1,9 @@
 {
-  "scripts_version": "025",
+  "scripts_version": "026",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Telhado Complexo, Telhado | Removidos: Telhado Complexo, Telhado",
-    "en": "Adicionados: Telhado Complexo, Telhado | Removidos: Telhado Complexo, Telhado",
-    "es": "Adicionados: Telhado Complexo, Telhado | Removidos: Telhado Complexo, Telhado"
+    "pt": "Correções",
+    "en": "Correções",
+    "es": "Correções"
   }
 }
