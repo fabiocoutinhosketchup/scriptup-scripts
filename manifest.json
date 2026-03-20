@@ -1,9 +1,9 @@
 {
-  "scripts_version": "030",
+  "scripts_version": "031",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Transformador Seamless Pro | Removidos: Transformador Seamless Pro",
-    "en": "Adicionados: Transformador Seamless Pro | Removidos: Transformador Seamless Pro",
-    "es": "Adicionados: Transformador Seamless Pro | Removidos: Transformador Seamless Pro"
+    "pt": "Adicionados: Texto Curvo | Removidos: Texto Curvo",
+    "en": "Adicionados: Texto Curvo | Removidos: Texto Curvo",
+    "es": "Adicionados: Texto Curvo | Removidos: Texto Curvo"
   }
 }
