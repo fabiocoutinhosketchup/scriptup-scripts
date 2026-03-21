@@ -1,9 +1,9 @@
 {
-  "scripts_version": "032",
+  "scripts_version": "033",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Texto Curvo | Removidos: Texto Curvo",
-    "en": "Adicionados: Texto Curvo | Removidos: Texto Curvo",
-    "es": "Adicionados: Texto Curvo | Removidos: Texto Curvo"
+    "pt": "Adicionados: Escala por Eixo Mantendo Proporção | Removidos: Escala por Eixo Mantendo Proporção",
+    "en": "Adicionados: Escala por Eixo Mantendo Proporção | Removidos: Escala por Eixo Mantendo Proporção",
+    "es": "Adicionados: Escala por Eixo Mantendo Proporção | Removidos: Escala por Eixo Mantendo Proporção"
   }
 }
