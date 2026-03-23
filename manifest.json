@@ -1,9 +1,9 @@
 {
-  "scripts_version": "033",
+  "scripts_version": "034",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "release_notes": {
-    "pt": "Adicionados: Escala por Eixo Mantendo Proporção | Removidos: Escala por Eixo Mantendo Proporção",
-    "en": "Adicionados: Escala por Eixo Mantendo Proporção | Removidos: Escala por Eixo Mantendo Proporção",
-    "es": "Adicionados: Escala por Eixo Mantendo Proporção | Removidos: Escala por Eixo Mantendo Proporção"
+    "pt": "Adicionados: Limpa Linhas, Limpa costuras, Revelador de linhas, Pincel de tags",
+    "en": "Adicionados: Limpa Linhas, Limpa costuras, Revelador de linhas, Pincel de tags",
+    "es": "Adicionados: Limpa Linhas, Limpa costuras, Revelador de linhas, Pincel de tags"
   }
 }
