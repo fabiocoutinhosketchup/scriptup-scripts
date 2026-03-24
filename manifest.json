@@ -1,6 +1,7 @@
 {
   "scripts_version": "035",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
+  "icons_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/script_icons.json",
   "release_notes": {
     "pt": "Adicionados: Opções de Design",
     "en": "Adicionados: Opções de Design",
