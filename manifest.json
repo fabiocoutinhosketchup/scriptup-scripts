@@ -1,10 +1,10 @@
 {
-  "scripts_version": "035",
+  "scripts_version": "036",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "icons_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/script_icons.json",
   "release_notes": {
-    "pt": "Adicionados: Opções de Design",
-    "en": "Adicionados: Opções de Design",
-    "es": "Adicionados: Opções de Design"
+    "pt": "Adicionados: Clonar Componentes, Ajustar Texturas | Removidos: Clonar componentes",
+    "en": "Adicionados: Clonar Componentes, Ajustar Texturas | Removidos: Clonar componentes",
+    "es": "Adicionados: Clonar Componentes, Ajustar Texturas | Removidos: Clonar componentes"
   }
 }
