@@ -1,10 +1,10 @@
 {
-  "scripts_version": "037",
+  "scripts_version": "038",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "icons_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/script_icons.json",
   "release_notes": {
-    "pt": "Adicionados: Gestor de Design | Removidos: Opções de Design",
-    "en": "Adicionados: Gestor de Design | Removidos: Opções de Design",
-    "es": "Adicionados: Gestor de Design | Removidos: Opções de Design"
+    "pt": "Adicionados: Limpa Linhas, Alinhar Objeto na Face | Removidos: Limpa Linhas",
+    "en": "Adicionados: Limpa Linhas, Alinhar Objeto na Face | Removidos: Limpa Linhas",
+    "es": "Adicionados: Limpa Linhas, Alinhar Objeto na Face | Removidos: Limpa Linhas"
   }
 }
