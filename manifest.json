@@ -1,10 +1,10 @@
 {
-  "scripts_version": "041",
+  "scripts_version": "042",
   "scripts_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/scripts.json",
   "icons_url": "https://raw.githubusercontent.com/fabiocoutinhosketchup/scriptup-scripts/main/script_icons.json",
   "release_notes": {
-    "pt": "Adicionados: Cronômetro | Removidos: Cronômetro",
-    "en": "Adicionados: Cronômetro | Removidos: Cronômetro",
-    "es": "Adicionados: Cronômetro | Removidos: Cronômetro"
+    "pt": "Atualização em lote: 4 novo(s), 2 removido(s).",
+    "en": "Atualização em lote: 4 novo(s), 2 removido(s).",
+    "es": "Atualização em lote: 4 novo(s), 2 removido(s)."
   }
 }
